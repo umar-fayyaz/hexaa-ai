@@ -84,7 +84,7 @@ const ChatContainer = () => {
 
     try {
       const [answerRes, leadRes] = await Promise.all([
-        fetch(`${import.meta.env.VITE_API_BASE_URL}/webhook/answer`, {
+        fetch(`http://chatbot.makhtanz.shop:5678/webhook/answer`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -95,7 +95,7 @@ const ChatContainer = () => {
             use_query_refinement: true,
           }),
         }),
-        fetch(`${import.meta.env.VITE_API_BASE_URL}/webhook/lead`, {
+        fetch(`http://chatbot.makhtanz.shop:5678/webhook/lead`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify([{ body: requestPayload }]),
@@ -137,7 +137,7 @@ const ChatContainer = () => {
     setIsTyping(true);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/webhook/reset`,
+        `http://chatbot.makhtanz.shop:5678/webhook/reset`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -204,7 +204,7 @@ const ChatContainer = () => {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/webhook/collect-metrics`,
+        `http://chatbot.makhtanz.shop:5678/webhook/collect-metrics`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
