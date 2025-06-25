@@ -84,7 +84,7 @@ const ChatContainer = () => {
 
     try {
       const [answerRes, leadRes] = await Promise.all([
-        fetch("http://chatbot.makhtanz.shop:5678/webhook/answer", {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/webhook/answer`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -95,7 +95,7 @@ const ChatContainer = () => {
             use_query_refinement: true,
           }),
         }),
-        fetch("http://chatbot.makhtanz.shop:5678/webhook/lead", {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/webhook/lead`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify([{ body: requestPayload }]),
@@ -137,7 +137,7 @@ const ChatContainer = () => {
     setIsTyping(true);
     try {
       const response = await fetch(
-        "http://chatbot.makhtanz.shop:5678/webhook/reset",
+        `${import.meta.env.VITE_API_BASE_URL}/webhook/reset`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -204,7 +204,7 @@ const ChatContainer = () => {
 
     try {
       const res = await fetch(
-        "http://chatbot.makhtanz.shop:5678/webhook/collect-metrics",
+        `${import.meta.env.VITE_API_BASE_URL}/webhook/collect-metrics`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -250,6 +250,9 @@ const ChatContainer = () => {
   const handleSuggestionClick = (text) => {
     handleSendMessage(text);
   };
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <>
